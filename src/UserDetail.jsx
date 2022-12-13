@@ -1,30 +1,23 @@
-import axios from 'axios'
-import React, { useState,useEffect } from 'react'
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-function UserDetail({activeUserId}) {
-const [user,setUser]=useState();
-const [loading, setLoading]=useState (true);
+function UserDetail({ activeUserId }) {
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
 
-useEffect(() => {
+  useEffect(() => {
     axios(`https://jsonplaceholder.typicode.com/users/${activeUserId}`)
-    .then((res) => setUser(res.data) )
-    .finally(() => setLoading(false));
+      .then((res) => setUser(res.data))
+      .finally(() => setLoading(false));
+  }, [activeUserId]);
 
-
-},[activeUserId])
-
-
-
-
-
-
-return (
+  return (
     <div>
       <h2>Detaylar</h2>
-      {loading && <div>Yükleniyor </div>}
-      <pre> {JSON.stringify(user,null,2)} </pre>
+      {loading && <div>Yükleniyor.. Lütfen Bekleyin. </div>}
+      <pre> {JSON.stringify(user, null, 2)} </pre>
     </div>
-  )
+  );
 }
 
 export default UserDetail;
